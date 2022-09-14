@@ -17,6 +17,7 @@ import { ConfigRestartPlugin } from './restart';
 import { ConfigProgressPlugin } from './progress';
 import { ConfigImageminPlugin } from './imagemin';
 import { ConfigUnocssPlugin } from './unocss';
+import { ConfigSvgIconsPlugin } from './svgIcons';
 
 
 export function createVitePlugins(isBuild: boolean) {
@@ -48,6 +49,9 @@ export function createVitePlugins(isBuild: boolean) {
   // 开启.gz压缩  rollup-plugin-gzip
   vitePlugins.push(ConfigCompressPlugin());
 
+   // vite-plugin-svg-icons
+  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
+
   // 监听配置文件改动重启
   vitePlugins.push(ConfigRestartPlugin());
 
@@ -64,3 +68,4 @@ export function createVitePlugins(isBuild: boolean) {
 
   return vitePlugins;
 }
+
