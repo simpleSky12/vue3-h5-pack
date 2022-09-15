@@ -10,6 +10,7 @@ function pathResolve(dir: string) {
 
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfig => {
+  console.log('%c [ command ]-13', 'font-size:14px; background:#1890ff; color:#fff;', command);
   const isBuild = command === 'build';
   let base: string;
   if (command === 'build') {
