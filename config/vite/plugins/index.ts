@@ -1,4 +1,3 @@
-import { AutoImportStyles } from './autoImportStyle';
 /**
  * @name createVitePlugins
  * @description 封装plugins数组统一调用
@@ -8,8 +7,10 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import VitePluginCertificate from 'vite-plugin-mkcert';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
+import { ConfigSvgIconsPlugin } from './svgIcons';
 import { AutoRegistryComponents } from './component';
 import { AutoImportDeps } from './autoImport';
+import { ConfigMockPlugin } from './mock';
 import { ConfigVisualizerConfig } from './visualizer';
 import { ConfigCompressPlugin } from './compress';
 import { ConfigPagesPlugin } from './pages';
@@ -17,8 +18,7 @@ import { ConfigRestartPlugin } from './restart';
 import { ConfigProgressPlugin } from './progress';
 import { ConfigImageminPlugin } from './imagemin';
 import { ConfigUnocssPlugin } from './unocss';
-import { ConfigSvgIconsPlugin } from './svgIcons';
-
+import { AutoImportStyles } from './autoImportStyle';
 
 export function createVitePlugins(isBuild: boolean) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
@@ -39,18 +39,14 @@ export function createVitePlugins(isBuild: boolean) {
 
   // 自动按需引入依赖
   vitePlugins.push(AutoImportDeps());
-
   // 自动引入UI组件的样式
   vitePlugins.push(AutoImportStyles());
-  
+
   // 自动生成路由
   vitePlugins.push(ConfigPagesPlugin());
 
   // 开启.gz压缩  rollup-plugin-gzip
   vitePlugins.push(ConfigCompressPlugin());
-
-   // vite-plugin-svg-icons
-  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
 
   // 监听配置文件改动重启
   vitePlugins.push(ConfigRestartPlugin());
@@ -61,6 +57,12 @@ export function createVitePlugins(isBuild: boolean) {
   // unocss
   vitePlugins.push(ConfigUnocssPlugin());
 
+  // vite-plugin-svg-icons
+  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
+
+  // vite-plugin-mock
+  vitePlugins.push(ConfigMockPlugin(isBuild));
+
   // rollup-plugin-visualizer
   vitePlugins.push(ConfigVisualizerConfig());
 
@@ -68,4 +70,3 @@ export function createVitePlugins(isBuild: boolean) {
 
   return vitePlugins;
 }
-

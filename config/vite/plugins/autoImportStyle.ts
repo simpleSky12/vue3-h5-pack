@@ -1,7 +1,5 @@
 // 自动引入vant中函数组件的样式
-import  {
-  VantResolve,createStyleImportPlugin
-} from 'vite-plugin-style-import'
+import { VantResolve, createStyleImportPlugin } from 'vite-plugin-style-import';
 
 export const AutoImportStyles = () => {
   return createStyleImportPlugin({

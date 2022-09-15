@@ -11,8 +11,9 @@ export const AutoImportDeps = () => {
       'vue',
       'pinia',
       'vue-router',
-      '@vueuse/core',
-      '@vueuse/head'
-    ],  
+      {
+        '@vueuse/core': [],
+      },
+    ],
   });
 };
