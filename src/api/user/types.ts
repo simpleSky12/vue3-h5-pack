@@ -15,8 +15,8 @@ export interface ResResult {
   headers: object;
 }
 export interface ResResultData {
-  code?: number;
-  result?: any;
-  message: string;
+  code: number;
+  data: any;
+  msg: string;
   status: string;
 }

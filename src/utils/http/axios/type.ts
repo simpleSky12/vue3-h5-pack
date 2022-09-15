@@ -7,7 +7,7 @@ export interface RequestOptions {
 export interface IResponse<T = any> {
   code: number | string;
   result: T;
-  message: string;
+  msg: string;
   status: string | number;
 }
 
